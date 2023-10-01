@@ -5,8 +5,11 @@ defmodule TwixWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", TwixWeb do
+  scope "/api" do
     pipe_through :api
+
+    foward("/graphql", Absinthe.Plug, schema: TwixWeb.Schema)
+    foward("/graphiql", Absinthe.Plug.GraphiQl, schema: TwixWeb.Schema)
   end
 
   # Enable LiveDashboard in development
