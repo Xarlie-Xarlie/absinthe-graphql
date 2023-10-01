@@ -21,7 +21,7 @@ defmodule Twix.Users.User do
     |> cast(params, @required_params)
     |> validate_required(@required_params)
     |> validate_length(:nickname, min: 1)
-    |> validate_number(:age, greaterr_than_or_equal_to: 18)
+    |> validate_number(:age, greater_than_or_equal_to: 18)
     |> unique_constraint(:nickname)
     |> unique_constraint(:email)
   end
