@@ -4,6 +4,7 @@ defmodule TwixWeb.Schema.Types.Root do
   alias Crudry.Middlewares.TranslateErrors
   alias TwixWeb.Resolvers.User, as: UserResolver
   alias TwixWeb.Resolvers.Post, as: PostResolver
+  alias TwixWeb.Resolvers.Follow, as: FollowResolver
 
   import_types(TwixWeb.Schema.Types.User)
   import_types(TwixWeb.Schema.Types.Post)
@@ -17,6 +18,13 @@ defmodule TwixWeb.Schema.Types.Root do
   end
 
   object :root_mutation do
+    field :add_follower, type: :follow_response do
+      arg(:input, non_null(:add_follower_input))
+
+      resolve(&FollowResolver.follow/2)
+      middleware(TranslateErrors)
+    end
+
     field :like_post, type: :post do
       arg(:id, non_null(:id))
 
@@ -27,21 +35,21 @@ defmodule TwixWeb.Schema.Types.Root do
       arg(:input, non_null(:create_post_input))
 
       resolve(&PostResolver.create/2)
-      middleware TranslateErrors
+      middleware(TranslateErrors)
     end
 
     field :create_user, type: :user do
       arg(:input, non_null(:create_user_input))
 
       resolve(&UserResolver.create/2)
-      middleware TranslateErrors
+      middleware(TranslateErrors)
     end
 
     field :update_user, type: :user do
       arg(:input, non_null(:update_user_input))
 
       resolve(&UserResolver.update/2)
-      middleware TranslateErrors
+      middleware(TranslateErrors)
     end
   end
 end

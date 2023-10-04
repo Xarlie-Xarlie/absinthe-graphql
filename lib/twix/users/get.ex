@@ -4,8 +4,11 @@ defmodule Twix.Users.Get do
 
   def call(id) do
     case Repo.get(User, id) do
-      nil -> {:error, :not_found}
-      %User{} = user -> {:ok, Repo.preload(user, :posts)}
+      nil ->
+        {:error, :not_found}
+
+      %User{} = user ->
+        {:ok, Repo.preload(user, posts: [], followers: [:follower], following: [:following])}
     end
   end
 end
