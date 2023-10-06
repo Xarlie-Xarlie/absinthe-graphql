@@ -43,7 +43,8 @@ defmodule Twix.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:absinthe, "~> 1.7"},
       {:absinthe_plug, "~> 1.5"},
-      {:crudry, "~> 2.4.0"}
+      {:crudry, "~> 2.4.0"},
+      {:absinthe_phoenix, "~> 2.0.0"}
     ]
   end
 
