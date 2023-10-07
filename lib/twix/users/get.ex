@@ -8,7 +8,7 @@ defmodule Twix.Users.Get do
         {:error, :not_found}
 
       %User{} = user ->
-        {:ok, Repo.preload(user, posts: [], followers: [:follower], following: [:following])}
+        {:ok, Repo.preload(user, followers: [:follower], following: [:following])}
     end
   end
 end

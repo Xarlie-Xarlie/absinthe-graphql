@@ -12,8 +12,7 @@ defmodule TwixWeb.Router do
 
     forward("/graphiql", Absinthe.Plug.GraphiQL,
       socket: TwixWeb.TwixSocket,
-      schema: TwixWeb.Schema,
-      interface: :simple
+      schema: TwixWeb.Schema
     )
   end
 

@@ -13,6 +13,7 @@ defmodule Twix do
 
   defdelegate create_post(params), to: Posts.Create, as: :call
   defdelegate add_like_to_post(id), to: Posts.AddLike, as: :call
+  defdelegate get_user_posts(user, page, page_size), to: Posts.Get, as: :call
 
   defdelegate create_user(params), to: Users.Create, as: :call
   defdelegate get_user(params), to: Users.Get, as: :call
